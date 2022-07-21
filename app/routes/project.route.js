@@ -9,9 +9,9 @@ const router = require('express').Router();
 
 router.get('/list',ProjectController.getAllProjects)
 router.post('/create',fileUpload(),uploadFile,createProjectValidator(),expressValidatorMapper,ProjectController.createProject)
-router.post('/:id',mongoIdValidator(),expressValidatorMapper,ProjectController.getProjectById);
-router.post('/remove/:id',mongoIdValidator(),expressValidatorMapper,ProjectController.removeProjectById);
-router.post('/edit/:id',mongoIdValidator(),expressValidatorMapper,ProjectController.updateProjectById);
+router.get('/:id',mongoIdValidator(),expressValidatorMapper,ProjectController.getProjectById);
+router.get('/remove/:id',mongoIdValidator(),expressValidatorMapper,ProjectController.removeProjectById);
+router.put('/edit/:id',mongoIdValidator(),expressValidatorMapper,ProjectController.updateProjectById);
 
 module.exports = {
     projectRoutes: router

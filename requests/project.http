@@ -9,5 +9,17 @@ Content-Type: application/json
 }
 
 ### get All Projects
-Get http://localhost:3000/project/
+Get http://localhost:3000/project/list
+Authorization: Bearer {{$dotenv TOKEN}}
+
+### get Project
+GET http://localhost:3000/project/qwdkwqpodwqpwk
+Authorization: Bearer {{$dotenv TOKEN}}
+
+### remove Project
+Delete http://localhost:3000/project/remove/qwdkwqpodwqpwk
+Authorization: Bearer {{$dotenv TOKEN}}
+
+### edit Project
+Put http://localhost:3000/project/edit/apsijdapisjdspadj
 Authorization: Bearer {{$dotenv TOKEN}}
