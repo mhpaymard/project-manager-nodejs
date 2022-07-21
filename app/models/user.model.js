@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
-    first_name:{type:String},
-    last_name:{type:String},
-    username:{type:String,required:true,unique:true},
-    mobile:{type:String,required:true,unique:true},
+    first_name:{type:String,trim:true},
+    last_name:{type:String,trim:true},
+    username:{type:String,required:true,unique:true,trim:true},
+    mobile:{type:String,required:true,unique:true,trim:true},
     roles:{type:[String],default:['USER']},
-    email:{type:String,required:true,unique:true},
+    email:{type:String,required:true,unique:true,trim:true},
     password:{type:String,required:true},
     skill:{type:[String],default:[]},
     teams:{type:[mongoose.Types.ObjectId],default:[]},
     token:{type:String,default:''},
-    profile_image:{type:String,default:'default.png'}
+    profile_image:{type:String,default:'/defaults/default.png'}
 },{
     timestamps:true
 })
