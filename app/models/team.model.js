@@ -4,7 +4,7 @@ const teamSchema = new mongoose.Schema({
     description:{type:String,required:true,trim:true},
     users:{type:[mongoose.Types.ObjectId],default:[]},
     projects:{type:[mongoose.Types.ObjectId],default:[]},
-    id_team:{type:String,unique:true,required:true,trim:true},
+    username:{type:String,unique:true,required:true,trim:true},
     owner:{type:mongoose.Types.ObjectId,required:true}
 },{
     timestamps:true

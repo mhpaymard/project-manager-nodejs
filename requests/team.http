@@ -1,0 +1,22 @@
+### create Team
+POST http://localhost:3000/team/create
+Authorization: Bearer {{$dotenv TOKEN}}
+Content-Type: application/json
+
+{
+    "name":"teamName1",
+    "description":"",
+    "username":"salamjigar"
+}
+
+### get List Of Teams
+GET  http://localhost:3000/team/list
+Authorization: Bearer {{$dotenv TOKEN}}
+
+### get Team By Id
+GET  http://localhost:3000/team/6jbbh2124326cc2b58c33f0e9ff9
+Authorization: Bearer {{$dotenv TOKEN}}
+
+### get My Teams
+GET  http://localhost:3000/team/me
+Authorization: Bearer {{$dotenv TOKEN}}
