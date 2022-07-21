@@ -1,0 +1,23 @@
+
+###register request
+
+Post http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "username":"erfanyousefi2",
+    "email":"talacemi4@gmail.com",
+    "mobile":"09132825433",
+    "password":"qweqwe123",
+    "confirm_password":"qweqwe123"
+}
+
+###login request
+Post http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "username":"erfanyousefi2",
+    "password":"qweqwe123"
+}
+

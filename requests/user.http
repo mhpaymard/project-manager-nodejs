@@ -1,0 +1,14 @@
+###get user Profile
+Get http://localhost:3000/user/profile
+Authorization: Bearer {{$dotenv TOKEN}}
+
+###edit user Profile
+Post http://localhost:3000/user/profile
+Authorization: Bearer {{$dotenv TOKEN}}
+Content-Type: application/json
+
+{
+    "first_name":"salam",
+    "last_name":"joonam",
+    "skill":[]`
+}

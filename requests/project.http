@@ -1,0 +1,13 @@
+### create Project
+Post http://localhost:3000/project/create
+Authorization: Bearer {{$dotenv TOKEN}}
+Content-Type: application/json
+
+{
+    "title":"salamTitle",
+    "text":"salamText"
+}
+
+### get All Projects
+Get http://localhost:3000/project/
+Authorization: Bearer {{$dotenv TOKEN}}
