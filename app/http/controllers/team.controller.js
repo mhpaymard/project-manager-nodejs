@@ -1,5 +1,5 @@
 class TeamController{
-    createTeam(){
+    async createTeam(req,res,next){
 
     }
     inviteUserToTeam(){

@@ -73,15 +73,60 @@ class ProjectController{
             next(error);
         }
     }
+    async updateProjectById(req,res,next){
+        try{
+            const owner = req.user._id;
+            const projectID = req.params.id;
+            await this.findProject(owner,projectID);
+            const data = {...req.body};
+            Object.entries(data).forEach(([key,value])=>{
+                if(!["title",'text','tags'].includes(key)) delete data[key];
+                if(['',' ',0,null,undefined,NaN].includes(value)) delete data[key];
+                if(key==='tags' && (value.constructor === Array)){
+                    data['tags'] = value.filter(item=>{
+                        if(!['',' ',0,null,undefined,NaN].includes(item)) return item;
+                    })
+                }else delete data['tags']
+            })
+            const updateResult = await ProjectModel.updateOne({_id:projectID},{
+                $set:{
+                    ...data
+                }
+            });
+            if(updateResult.modifiedCount == 0) throw {status:400,message:'بروزرسانی انجام نشد'};
+            return res.status(200).json({
+                status:200,
+                message:'آپدیت اطلاعات پروژه با موفقیت انحام شد',
+                success:true
+            })
+        }catch(error){
+            next(error);
+        }
+    }
+    async updateProjectImageById(req,res,next){
+        try{
+            const {image} = req.body;
+            const owner = req.user._id;
+            const projectID = req.params.id;
+            await this.findProject(owner,projectID);
+            const updateResult = await ProjectModel.updateOne({_id:projectID},{$set:{image}});
+            if(updateResult.modifiedCount==0) throw {status:400,message:'اپدیت تصویر شاخص پروژه با خطا مواجه بود'};
+            return res.status(200).json({
+                status:200,
+                success:true,
+                message:'اپدیت تصویر شاخص پروژه با موفقیت انجام شد'
+            });
+        }catch(error){
+            next(error);
+        }
+    }
     getAllProjectsByTeam(){
 
     }
     getProjectByUser(){
 
     }
-    updateProjectById(){
-
-    }
+    
     
 }
 

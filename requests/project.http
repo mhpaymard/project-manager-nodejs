@@ -13,7 +13,7 @@ GET http://localhost:3000/project/list
 Authorization: Bearer {{$dotenv TOKEN}}
 
 ### get Project By Id
-GET http://localhost:3000/project/62d8283107907bfec43c3bc0
+GET http://localhost:3000/project/62d844b41a78b037b8e990b8
 Authorization: Bearer {{$dotenv TOKEN}}
 
 ### remove Project
@@ -21,5 +21,12 @@ Delete http://localhost:3000/project/remove/62d8283107907bfec43c3bc0
 Authorization: Bearer {{$dotenv TOKEN}}
 
 ### edit Project
-Put http://localhost:3000/project/edit/apsijdapisjdspadj
+Put http://localhost:3000/project/edit/62d84412e48d13b570223961
 Authorization: Bearer {{$dotenv TOKEN}}
+Content-Type: application/json
+
+{
+    "title":"",
+    "text":"modifiedjoon11",
+    "tags":["salam"]
+}

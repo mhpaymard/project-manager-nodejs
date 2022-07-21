@@ -12,7 +12,7 @@ router.post('/create',fileUpload(),uploadFile,createProjectValidator(),expressVa
 router.get('/:id',mongoIdValidator(),expressValidatorMapper,ProjectController.getProjectById);
 router.delete('/remove/:id',mongoIdValidator(),expressValidatorMapper,ProjectController.removeProjectById);
 router.put('/edit/:id',mongoIdValidator(),expressValidatorMapper,ProjectController.updateProjectById);
-
+router.patch('/edit-image/:id',mongoIdValidator(),expressValidatorMapper,fileUpload(),uploadFile,ProjectController.updateProjectImageById)
 module.exports = {
     projectRoutes: router
 }
