@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
     "name":"teamName1",
-    "description":"",
+    "description":"123",
     "username":"salamjigar"
 }
 
@@ -20,3 +20,21 @@ Authorization: Bearer {{$dotenv TOKEN}}
 ### get My Teams
 GET  http://localhost:3000/team/me
 Authorization: Bearer {{$dotenv TOKEN}}
+
+### remove team
+DELETE http://localhost:3000/team/remove/62d97501c3639888bad1960d
+Authorization: Bearer {{$dotenv TOKEN}}
+
+### invite User To Team
+GET http://localhost:3000/team/invite/62d9751fc3639888bad1961c/erfanyousefi5
+Authorization: Bearer {{$dotenv TOKEN}}
+
+### update Team
+Put http://localhost:3000/team/update/62d9751fc3639888bad1961c
+Authorization: Bearer {{$dotenv TOKEN}}
+Content-Type: application/json
+
+{
+    "name":"newSalam",
+    "chetory":"hi"
+}

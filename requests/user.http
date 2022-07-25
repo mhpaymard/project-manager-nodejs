@@ -12,3 +12,16 @@ Content-Type: application/json
     "last_name":"joonam",
     "skill":[]`
 }
+
+
+### get All Requests
+Get http://localhost:3000/user/requests
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImVyZmFueW91c2VmaTUiLCJpYXQiOjE2NTg0MjY1OTQsImV4cCI6MTY1OTAzMTM5NH0.UmljZy_c6ou9s3b1HJaWLCZ0215EosybfRobMmMHTSk
+
+### get Requests By Status
+Get http://localhost:3000/user/requests/pending
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImVyZmFueW91c2VmaTUiLCJpYXQiOjE2NTg0MjY1OTQsImV4cCI6MTY1OTAzMTM5NH0.UmljZy_c6ou9s3b1HJaWLCZ0215EosybfRobMmMHTSk
+
+### get Requests By Status
+Get http://localhost:3000/user/change-status-request/62d991105022e27aee86fea1/accepted
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImVyZmFueW91c2VmaTUiLCJpYXQiOjE2NTg0MjY1OTQsImV4cCI6MTY1OTAzMTM5NH0.UmljZy_c6ou9s3b1HJaWLCZ0215EosybfRobMmMHTSk

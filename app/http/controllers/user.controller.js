@@ -58,15 +58,83 @@ class UserController{
             next(err);
         }
     }
+    async getAllRequests(req,res,next){
+        try{
+            const userID = req.user._id;
+            const requests = await UserModel.findOne({_id:userID},{inviteRequests:1});
+            return res.status(200).json({
+                status:200,
+                success:true,
+                requests:requests?.inviteRequests || []
+            });
+        }catch(error){
+            next(error);
+        }
+    }
+    async getRequestsByStatus(req,res,next){
+        try{
+            const {status} = req.params;
+            const userID = req.user._id;
+            const requests = await UserModel.aggregate([
+                {
+                    $match:{_id:userID}
+                },
+                {
+                    $project:{
+                        inviteRequests:1,
+                        _id:0,
+                        inviteRequests:{
+                            $filter:{
+                                input: "$inviteRequests",
+                                as:'request',
+                                cond:{
+                                    $eq:["$$request.status",status]
+                                }
+                            }
+                        }
+                    }
+                }
+            ])
+            return res.status(200).json({
+                status:200,
+                success:true,
+                requests:requests?.[0]?.inviteRequests || []
+            })
+        }catch(error){
+            next(error);
+        }
+    }
+    async changeStatusRequest(req,res,next){
+        try{
+            const {id,status} = req.params;
+            const owner = req.user._id;
+            const request = await UserModel.findOne({_id:owner,"inviteRequests._id":id});
+            if(!request) throw {status:404,message:'درخواستی با این مشخصات یافت نشد'};
+            const findRequest = request.inviteRequests.find(item=>item.id == id);
+            if(findRequest.status!=='pending') throw {status:400,message:"این درخواست قبلا پذیرفته یا رد شده است"};
+            if(!['accepted','rejected'].includes(status)) throw {status:400,message:'اطلاعات ارسال شده صحیح نمی باشد'};
+            const updateResult = await UserModel.updateOne({_id:owner,"inviteRequests._id":id},{
+                $set:{
+                    "inviteRequests.$.status":status
+                }
+            })
+            if(updateResult.modifiedCount==0) throw {status:400,message:'اپدیت وضعیت درخواست دعوت به تیم ، با خطا مواجه شد'};
+            return res.status(200).json({
+                status:200,
+                message:"تغییر وضعیت درخواست با موفقیت انجام شد",
+                success:true
+            });
+        }catch(error){
+            next(error);
+        }
+    }
     addSkills(){
 
     }
     editSkills(){
 
     }
-    acceptInviteInTeam(){
-
-    }
+    
     rejectInviteInTeam(){
 
     } 

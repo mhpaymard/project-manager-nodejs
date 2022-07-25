@@ -1,5 +1,6 @@
-const {body} = require('express-validator');
+const {body,param} = require('express-validator');
 const { TeamModel } = require('../../models/team.model');
+const { UserModel } = require('../../models/user.model');
 function createTeamValidation(){
     return [
         body('name').notEmpty().withMessage('نام تیم الزامی باشد'),
@@ -13,6 +14,29 @@ function createTeamValidation(){
         })
     ]
 }
+// function inviteToTeamValidator(){
+//     return [
+//         param('teamID').custom(async (teamID,{req})=>{
+//             const userID = req.user._id;
+//             const team = await TeamModel.findOne(
+//                 { 
+//                     $or:[
+//                         {owner:userID},
+//                         {users:userID}
+//                     ],
+//                     _id:teamID
+//                 },
+//             )
+//             if(!team) throw 'تیمی جهت دعوت کردن افراد یافت نشد'
+//             return true;
+//         }),
+//         param('username').custom(async (username)=>{
+//             const user = await UserModel.findOne({username});
+//             if(!user) throw 'کاربر مورد نظر جهت دعوت به تیم یافت نشد';
+//             return true;
+//         })
+//     ]
+// }
 module.exports = {
     createTeamValidation
 }
